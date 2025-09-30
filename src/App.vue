@@ -1,9 +1,25 @@
 <template>
   <div>
-    <div v-for="(obj, index) in todos" v-bind:key="obj.id" class="todos-item">
+    <h1 :class="{ 'title': true, 'title-home': isHome }">
+      Curso VueJS 3
+    </h1>
+
+    <p :class="pClass">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat provident reprehenderit distinctio! Consequuntur, error harum, asperiores eaque perspiciatis unde illum corrupti assumenda, sapiente deserunt atque. Illo aut iusto neque dolore.
+    </p>
+
+    <p :style="styleClass">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem cum exercitationem fuga aperiam alias dolores tenetur quasi voluptatem voluptatibus porro ipsam optio incidunt cupiditate facere, illo esse, ipsum fugit sunt.
+    </p>
+
+    <div 
+      v-for="(obj, index) in todos" 
+      :key="obj.id" 
+      class="todos-item"
+      >
       <img 
         v-if="obj.imgSrc" 
-          :src="obj.imgSrc"
+        :src="obj.imgSrc"
       >
       {{ index }} - {{ obj.title }}
     </div>
@@ -18,6 +34,10 @@ export default {
   name: 'App', 
   data() {
     return {
+      isHome: true,
+      classVar: 'title',
+      styleClass: { color: 'aqua', backgroundColor: 'black', 'font-size': '20px' }, // Conseguimos fazer das duas formas
+      pClass: ['text', 'text-home'],
       todos: [
         {
           "userId": 1,
@@ -58,6 +78,24 @@ export default {
 </script>
 
 <style>
+.title {
+  font-size: 20px;
+  color: blue;
+}
+
+.title-home {
+  font-size: 40px;
+  color: green;
+}
+
+.text {
+  color: yellow;
+}
+
+.text-home {
+  color: #42b983;
+}
+
 .todos-item {
   background: #000;
   margin: 0 0 5px 0;
