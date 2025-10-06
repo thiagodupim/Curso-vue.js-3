@@ -5,8 +5,26 @@
 </template>
 
 <script>
-    export default {
+    export default {  
+        mounted() {
+            window.addEventListener('resize', this.resize);
+        },
+
+        // Destruir as nossas libs, Eventos e Listeners
+        beforeUnmount() {
+            console.log('beforeUnmount');
+            window.removeEventListener('resize', this.resize);
+        },
+
+        unmounted() {
+            console.log('unmounted');
+        },
         
+        methods: {
+            resize($evt) {
+                console.log($evt);
+            },
+        }
     }
 </script>
 
