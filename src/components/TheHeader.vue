@@ -1,29 +1,23 @@
 <template>
     <header class="header">
-        Header
+        <h1 class="title">
+            <slot name="title" />
+        </h1>
+        
+        <div class="description">
+            <slot name="description" /> 
+        </div>
+        
+        <div>
+            <slot />
+        </div>
     </header>
 </template>
 
 <script>
     export default {  
         mounted() {
-            window.addEventListener('resize', this.resize);
-        },
-
-        // Destruir as nossas libs, Eventos e Listeners
-        beforeUnmount() {
-            console.log('beforeUnmount');
-            window.removeEventListener('resize', this.resize);
-        },
-
-        unmounted() {
-            console.log('unmounted');
-        },
-        
-        methods: {
-            resize($evt) {
-                console.log($evt);
-            },
+            console.log(this.$slots)
         }
     }
 </script>
