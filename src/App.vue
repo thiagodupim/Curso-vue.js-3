@@ -1,7 +1,19 @@
 <template>
   <div>
+
+    <!--
+      De cima pra baixo usamos o props e debaixo pra cima usamos o emit
+      <PAI> -> props
+        <FILHO>
+          emit - event <NETO></NETO>
+        </FILHO>
+      </PAI>
+    -->
+
     <BaseAlert
+      v-if="showAlert"
       :variant="variant"
+      @close="onClose"
     >
       {{ text }}
     </BaseAlert>
@@ -16,10 +28,18 @@ import BaseAlert from './components/BaseAlert.vue';
     components: { BaseAlert },
     data() {
       return {
+        showAlert: true,
         variant: 'success',
         text: 'Seu formulário foi enviado com sucesso!'
       }
     },
+    
+    methods: {
+      onClose() {
+        this.showAlert = false;
+        console.log('on close');
+      }
+    }
   }
 </script>
 

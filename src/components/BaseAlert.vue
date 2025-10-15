@@ -1,8 +1,10 @@
 <template>
     <!-- <div :class="`alert alert-${variant}`"> -- Essa forma também funciona -->
     <div :class="baseClass">
-        {{ test }}
         <slot />
+        <button @click="onClick()">
+            X
+        </button>
     </div>
 </template>
 
@@ -13,10 +15,6 @@
                 type: String,
                 default: ''
             },
-            test: {
-                type: String,
-                default: 'test'
-            },
         },
 
         computed: {
@@ -26,13 +24,22 @@
                     this.variant ? `alert-${this.variant}` : ''
                 ]
             },
+        },
+
+        methods: {
+            onClick() {
+                this.$emit('close') // Envia o evento pro pai
+                console.log('clicou')
+            }
         }
     }
 </script>
 
 <style scoped>
     .alert {
-        padding: 5pc;
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
         border-radius: 6px;
         color: gray;
         background: #ddd;
